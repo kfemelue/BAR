@@ -17,15 +17,6 @@ app.get("/", (req, res)=>{
     res.redirect("/album-data");
 });
 
-app.get("/seed", async (req, res)=>{
-    try {
-        await seed();
-        res.status(200).send("Your request was completed")
-    }catch (error){
-        console.error("There was a problem on the server")
-    }
-});
-
 app.get("/album-data", async (req, res)=>{
     try {
         await client.connect();
