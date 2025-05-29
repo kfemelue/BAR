@@ -8,7 +8,6 @@ const uri = process.env.MONGO_URI;
 const database = process.env.DB_NAME;
 const coll = process.env.COLLECTION;
 const client = new MongoClient(uri);
-const seed = require('./seeder/seed_file');
 
 app.use(cors());
 app.use(express.json());

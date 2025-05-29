@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const {Schema, model} = mongoose;
-
 const albumSchema = new mongoose.Schema({
     title: String,
     artist: String,
@@ -14,7 +12,6 @@ const albumSchema = new mongoose.Schema({
     }
 });
 
+// const Album = mongoose.Model("Album", albumSchema)
 
-const AlbumModel= mongoose.Model("Album", albumSchema)
-
-export default AlbumModel;
+module.exports.albumSchema = albumSchema;
