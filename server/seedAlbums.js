@@ -1,10 +1,14 @@
-require('dotenv').config();
 const { faker } = require('@faker-js/faker');
-const albumSchema = require('../models/album').albumSchema;
+const albumSchema = require('./models/Album').albumSchema;
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 async function seedAlbums(){
-    const uri = await process.env.MONGO_URI;
+    const uri = process.env.URL;
+    const database = process.env.DB;
+    const connection_string = `${uri}/${database}`;
+
+    console.log(process.env.DB)
     try {
         let albums = []
         for (i=0; i < 15; i++){
@@ -28,10 +32,10 @@ async function seedAlbums(){
             }
 
             albums.push(oneAlbum);
-            console.log("album pushed")
         }
         
-        const connection = await mongoose.connect("mongodb://localhost:27017/Music")
+        console.log(connection_string)
+        const connection = await mongoose.connect(connection_string)
 
         const Album = await connection.model("Album", albumSchema)
         await Album.insertMany(albums)
